@@ -98,16 +98,18 @@ form[action$="destroy"] button {
 
 #root {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   height: 100%;
   width: 100%;
 }
 
 #sidebar {
-  width: 22rem;
+  width: 100%;
   background-color: #f7f7f7;
   border-right: solid 1px #e3e3e3;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 #sidebar > * {
@@ -123,7 +125,7 @@ form[action$="destroy"] button {
   margin: 0;
   padding: 1rem 2rem;
   border-top: 1px solid #e3e3e3;
-  order: 1;
+  /* order: 1; */
   line-height: 1;
 }
 
@@ -141,6 +143,7 @@ form[action$="destroy"] button {
   padding-top: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #e3e3e3;
+  order: 1;
 }
 
 #sidebar > div form {
@@ -184,6 +187,7 @@ form[action$="destroy"] button {
   flex: 1;
   overflow: auto;
   padding-top: 1rem;
+  align-items: center;
 }
 
 #sidebar nav a span {
@@ -205,6 +209,8 @@ i {
   padding: 0;
   margin: 0;
   list-style: none;
+  display: flex;
+  flex-direction: row;
 }
 
 #sidebar li {
