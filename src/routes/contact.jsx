@@ -1,9 +1,46 @@
 /* eslint-disable */
-import { Form, useLoaderData } from 'react-router-dom';
-import { getContact } from '../Contact';
+import { Form, useFetcher, useLoaderData } from 'react-router-dom';
+import { getContact, updateContact } from '../Contact';
 
 export async function loader ({ params }) {
-  return getContact(params.contactId);
+  const contact = await getContact(params.contactId);
+  if (!contact) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  return contact;
+}
+
+export async function action ({ request, params}) {
+  let formData = await request.formData();
+  return updateContact(params.contactId, {
+    favorite: formData.get("favorite") ==="true",
+  });
+}
+
+function Favorite({ contact }) {
+  const fetcher = useFetcher();
+  let favorite = contact.favorite;
+  if (fetcher.formData) {
+    favorite = fetcher.formData.get("favorite") === "true";
+  }
+  return (
+    <fetcher.Form method="post">
+      <button
+        name="favorite"
+        value={favorite ? 'false' : 'true'}
+        aria-label={
+          favorite
+            ? 'Remove from favorites'
+            : 'Add to favorites'
+        }
+      >
+        {favorite ? '★' : '☆'}
+      </button>
+    </fetcher.Form>
+  );
 }
 
 export default function Contact() {
@@ -69,25 +106,5 @@ export default function Contact() {
         </div>
       </div>
     </div>
-  );
-}
-
-function Favorite({ contact }) {
-  // yes, this is a `let` for later
-  const { favorite } = contact;
-  return (
-    <Form method="post">
-      <button
-        name="favorite"
-        value={favorite ? 'false' : 'true'}
-        aria-label={
-          favorite
-            ? 'Remove from favorites'
-            : 'Add to favorites'
-        }
-      >
-        {favorite ? '★' : '☆'}
-      </button>
-    </Form>
   );
 }
