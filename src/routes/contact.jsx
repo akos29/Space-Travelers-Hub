@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { Form, useFetcher, useLoaderData } from 'react-router-dom';
-import { getContact, updateContact } from '../Contact';
+import { getContact, updateContact } from '../components/Contact';
 
 export async function loader ({ params }) {
   const contact = await getContact(params.contactId);

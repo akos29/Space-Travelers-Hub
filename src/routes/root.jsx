@@ -1,7 +1,6 @@
 /* eslint-disable */
 import { Outlet, NavLink, useLoaderData, Form, redirect, useNavigation, useSubmit } from 'react-router-dom';
-import { useEffect } from 'react';
-import { getContacts,createContact } from '../Contact';
+import { getContacts,createContact } from '../components/Contact';
 
 export async function action() {
   const contact = await createContact();
@@ -22,77 +21,46 @@ export default function Root() {
 
   const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
 
-  useEffect(() => {
-    document.getElementById("q").value = q;
-  }, [q]);
+  // useEffect(() => {
+  //   document.getElementById("q").value = q;
+  // }, [q]);
 
   return (
     <>
       <div id="sidebar">
-        <h1>React Router Contacts</h1>
-        <div>
-          <Form id="search-form" role="search">
-            <input
-              id="q"
-              className={ searching ? "loading" : "" }
-              aria-label="Search contacts"
-              placeholder="Search"
-              type="search"
-              name="q"
-              defaultValue={q}
-              onChange={(event) => {
-                const isFirstSearch = q == null;
-                submit(event.currentTarget.form, {
-                  replace: !isFirstSearch,
-                })
-              }}
-            />
-            <div
-              id="search-spinner"
-              aria-hidden
-              hidden={!searching}
-            />
-            <div
-              className="sr-only"
-              aria-live="polite"
-            />
-          </Form>
-          <Form method="post">
-            <button type="submit">New</button>
-          </Form>
-        </div>
+        <h1>Space Travelers' Hub</h1>
         <nav>
-        {contacts.length ? (
-            <ul>
-              {contacts.map((contact) => (
-                <li key={contact.id}>
-                   <NavLink
-                    to={`contacts/${contact.id}`}
-                    className={({ isActive, isPending }) =>
+          <ul>
+            <li>
+              <NavLink to={`rockets/`} className={({ isActive, isPending }) =>
                       isActive
                         ? "active"
                         : isPending
                         ? "pending"
                         : ""
-                    }
-                  >
-                    {contact.first || contact.last ? (
-                      <>
-                        {contact.first} {contact.last}
-                      </>
-                    ) : (
-                      <i>No Name</i>
-                    )}{" "}
-                    {contact.favorite && <span>★</span>}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>
-              <i>No contacts</i>
-            </p>
-          )}
+                    } >Rockets</NavLink>
+            </li>
+            <li>
+              <NavLink to={`missions/`} className={({ isActive, isPending }) =>
+                      isActive
+                        ? "active"
+                        : isPending
+                        ? "pending"
+                        : ""
+                    } >Missions</NavLink>
+            </li>
+            <li>|</li>
+            <li>
+              <NavLink to={`myprofile/`} className={({ isActive, isPending }) =>
+                      isActive
+                        ? "active"
+                        : isPending
+                        ? "pending"
+                        : ""
+                    } >My Profile</NavLink>
+            </li>
+          
+          </ul>
         </nav>
       </div>
       <div id="detail" className= {navigation.state === "loading" ? "loading" : ""}>

@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { Form, useLoaderData, redirect, useNavigate } from "react-router-dom";
-import { updateContact } from "../Contact";
+import { updateContact } from "../components/Contact";
 
 export async function action({ request, params }) {
   const formData = await request.formData();
