@@ -10,7 +10,6 @@ import './index.css';
 import { Provider } from 'react-redux';
 import Root, { loader as rootLoader } from './routes/root';
 import ErrorPage from './error-page';
-// import Index from './routes/index';
 import Rockets from './components/Rockets';
 import Mission from './components/Mission';
 import MyProfile from './components/MyProfile';

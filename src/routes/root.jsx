@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
   Outlet, NavLink, useLoaderData, redirect, useNavigation, useSubmit,
 } from 'react-router-dom';

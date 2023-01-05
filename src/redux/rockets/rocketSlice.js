@@ -10,6 +10,7 @@ export const getRockets = createAsyncThunk('rocket', async () => {
 const initialState = {
   rockets: [],
   status: 'idle',
+  bookedRockets: [],
 };
 
 const rocketSlice = createSlice({
@@ -30,6 +31,10 @@ const rocketSlice = createSlice({
       });
       state.rockets = newState;
     },
+    myReservations: (state) => {
+      const newState = state.rockets.filter((rocket) => rocket.reserved);
+      state.bookedRockets = newState;
+    },
   },
   extraReducers(builder) {
     builder
@@ -47,5 +52,5 @@ const rocketSlice = createSlice({
   },
 });
 
-export const { reserve, cancelReserve } = rocketSlice.actions;
+export const { reserve, cancelReserve, myReservations } = rocketSlice.actions;
 export default rocketSlice.reducer;
