@@ -7,12 +7,14 @@ import {
   Route,
 } from 'react-router-dom';
 import './index.css';
+import { Provider } from 'react-redux';
 import Root, { loader as rootLoader } from './routes/root';
 import ErrorPage from './error-page';
 import Index from './routes/index';
 import Rockets from './components/Rockets';
 import Mission from './components/Mission';
 import MyProfile from './components/MyProfile';
+import Store from './redux/store';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -46,6 +48,8 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={Store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>,
 );

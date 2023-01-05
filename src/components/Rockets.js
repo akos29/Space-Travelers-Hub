@@ -1,33 +1,28 @@
 /* eslint-disable  */
 import React, {useEffect,useState} from 'react';
+import { useDispatch,useSelector } from 'react-redux';
 import spaceApi from '../apis/spaceAPI';
 import DisplayRocket from './DisplayRocket';
+import { displayRockets, recordRockets } from '../redux/rockets/rocketSlice';
 
 function Rockets() {
-  const [results, setResults]= useState([]);
-  const [errorMessage, setErrorMessage] =useState("");
-  const fetchRockets = async () => {
-    try{
-      const res = await spaceApi.get('/rockets')
-      setResults(res.data);
-    } catch(err) {
-      setErrorMessage("Something went wrong");
-    }
-    
-  };
-  
+  const dispatch = useDispatch();
+
   useEffect (() => {
-    fetchRockets();
-  }, []);
+    dispatch(displayRockets());
+  }, [dispatch]);
 
-
-  if(results.length){
+  const rockets = useSelector(state => state.rockets.rockets);
+ 
+  if(rockets.length){
       return <>{
-        results.map((result) => {
+        rockets.map((result) => {
           return <DisplayRocket key={result.id}
           rocket_name={result.rocket_name}
           description={result.description}
-          flickr_images={result.flickr_images[0]}  /> 
+          flickr_images={result.flickr_images[0]} 
+          reserved={result.reserved ? true : false}
+          /> 
         })
         }</>
     }

@@ -1,11 +1,17 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector,useDispatch } from 'react-redux';
+import { reserve } from '../redux/rockets/rocketSlice'
 import styles from './DisplayRocket.module.css';
 
+
 function DisplayRocket({
-  rocId, rocket_name, description, flickr_images,
+  rocId, rocket_name, description, flickr_images,reserved
 }) {
+  const dispatch = useDispatch();
+  const rockets = useSelector((state) => state.rockets.rockets);
+  
   return (
     <div className={styles.container}>
       <div className={styles.image}>
@@ -13,8 +19,10 @@ function DisplayRocket({
       </div>
       <div className={styles.detail}>
         <h3>{rocket_name}</h3>
+        {reserved ? <button type='button'>Reserved</button>:null}
         <p>{description}</p>
-        <button id={rocId} type="button">Reserve Rocket</button>
+        {reserved ? <button type='button'>Cancel Reservation</button>:<button id={rocId} type="button" onClick={() => { dispatch(reserve(rocId))}} > Reserve Rocket</button>}
+        
       </div>
     </div>
   );
