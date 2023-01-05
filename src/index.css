@@ -366,10 +366,9 @@ i {
 }
 
 button.badge {
-  padding: 0.1rem .2rem;
+  padding: 0.1rem 0.2rem;
   margin: 0;
   font-size: 1rem;
   background-color: rgb(24, 162, 184);
   color: white;
 }
-
