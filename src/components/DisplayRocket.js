@@ -1,8 +1,8 @@
 /* eslint-disable */
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector,useDispatch } from 'react-redux';
-import { reserve } from '../redux/rockets/rocketSlice'
+import { useSelector, useDispatch } from 'react-redux';
+import { reserve, cancelReserve } from '../redux/rockets/rocketSlice'
 import styles from './DisplayRocket.module.css';
 
 
@@ -21,7 +21,7 @@ function DisplayRocket({
         <h3>{rocket_name}</h3>
         {reserved ? <button type='button'>Reserved</button>:null}
         <p>{description}</p>
-        {reserved ? <button type='button'>Cancel Reservation</button>:<button id={rocId} type="button" onClick={() => { dispatch(reserve(rocId))}} > Reserve Rocket</button>}
+        {reserved ? <button type='button' onClick={() => dispatch(cancelReserve(rocId)) } >Cancel Reservation</button>:<button id={rocId} type="button" onClick={() => { dispatch(reserve(rocId))}} > Reserve Rocket</button>}
         
       </div>
     </div>

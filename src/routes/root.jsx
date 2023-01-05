@@ -1,6 +1,11 @@
 /* eslint-disable */
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Outlet, NavLink, useLoaderData, Form, redirect, useNavigation, useSubmit } from 'react-router-dom';
 import { getContacts,createContact } from '../components/Contact';
+import { displayRockets } from '../redux/rockets/rocketSlice';
+
+
 
 export async function action() {
   const contact = await createContact();
@@ -18,6 +23,13 @@ export default function Root() {
   const { contacts, q } = useLoaderData();
   const navigation = useNavigation();
   const submit = useSubmit();
+
+  const dispatch = useDispatch();
+
+  useEffect (() => {
+    dispatch(displayRockets());
+  }, [dispatch]);
+
 
   const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
 
