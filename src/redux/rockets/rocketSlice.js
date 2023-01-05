@@ -1,19 +1,21 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import spaceApi from '../../apis/spaceAPI';
+
+export const getRockets = createAsyncThunk('rocket', async () => {
+  const res = await spaceApi.get('/rockets');
+  return res.data;
+});
 
 const initialState = {
   rockets: [],
-  reserved: 0,
+  status: 'idle',
 };
 
 const rocketSlice = createSlice({
   name: 'rocket',
   initialState,
   reducers: {
-    getRockets: (state, action) => {
-      state.rockets = action.payload;
-    },
     reserve: (state, action) => {
       const newState = state.rockets.map((rocket) => {
         if (rocket.id !== action.payload) { return rocket; }
@@ -29,20 +31,21 @@ const rocketSlice = createSlice({
       state.rockets = newState;
     },
   },
+  extraReducers(builder) {
+    builder
+      .addCase(getRockets.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getRockets.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.rockets = state.rockets.concat(action.payload);
+      })
+      .addCase(getRockets.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      });
+  },
 });
 
-export const { getRockets, reserve, cancelReserve } = rocketSlice.actions;
+export const { reserve, cancelReserve } = rocketSlice.actions;
 export default rocketSlice.reducer;
-
-// const { getRockets } = rocketSlice.actions;
-
-export const displayRockets = () => async (dispatch) => {
-  try {
-    await spaceApi.get('/rockets')
-      .then((res) => {
-        dispatch(getRockets(res.data));
-      });
-  } catch (err) {
-    console.log('Something went wrong');
-  }
-};

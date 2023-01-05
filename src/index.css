@@ -57,7 +57,7 @@ button {
 }
 
 button {
-  color: #3992ff;
+  color: #007bff;
   font-weight: 500;
 }
 
@@ -259,12 +259,13 @@ i {
 }
 
 #sidebar nav a.active {
-  background: hsl(224, 98%, 58%);
-  color: white;
+  border-bottom: 1px solid #007bff;
+  color: #007bff;
+  border-radius: 0;
 }
 
 #sidebar nav a.pending {
-  color: hsl(224, 98%, 58%);
+  color: #007bff;
 }
 
 #detail {
@@ -294,13 +295,13 @@ i {
 
 #contact h1:focus {
   outline: none;
-  color: hsl(224, 98%, 58%);
+  color: #007bff;
 }
 
 #contact a[href*="twitter"] {
   display: flex;
   font-size: 1.5rem;
-  color: #3992ff;
+  color: #007bff;
   text-decoration: none;
 }
 
@@ -363,3 +364,12 @@ i {
   justify-content: center;
   width: 100%;
 }
+
+button.badge {
+  padding: 0.1rem .2rem;
+  margin: 0;
+  font-size: 1rem;
+  background-color: rgb(24, 162, 184);
+  color: white;
+}
+

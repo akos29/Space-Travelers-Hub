@@ -34,8 +34,17 @@
 	margin-bottom: 0;
 }
 
-.detail>button {
+.detail .cancel {
+	background-color: white;
+	color: #121212;
+	border: 1px solid #121212;
+	opacity: .68;
+	box-shadow: none;
+  }
+  
+  .detail>button {
 	background-color: #3992ff;
 	color: #f4f3f2;
 	font-size: .85rem;
 }
+
