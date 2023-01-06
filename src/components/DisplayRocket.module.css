@@ -1,0 +1,49 @@
+* {
+  /* background-color: brown; */
+}
+
+.container {
+  display: flex;
+  padding-bottom: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.image {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: 20rem;
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+}
+
+.detail {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.detail > h3 {
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.detail .cancel {
+  background-color: white;
+  color: #121212;
+  border: 1px solid #121212;
+  opacity: 0.68;
+  box-shadow: none;
+}
+
+.detail > button {
+  background-color: #3992ff;
+  color: #f4f3f2;
+  font-size: 0.85rem;
+}
