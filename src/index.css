@@ -372,3 +372,8 @@ button.badge {
   background-color: rgb(24, 162, 184);
   color: white;
 }
+
+li.separator {
+  border-left: 2px solid black;
+  opacity: 0.5;
+}

@@ -59,7 +59,7 @@ export default function Root() {
 
               </NavLink>
             </li>
-            <li>|</li>
+            <li className='separator'></li>
             <li>
               <NavLink
                 to="myprofile/"
