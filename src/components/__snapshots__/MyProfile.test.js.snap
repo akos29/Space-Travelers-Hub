@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rockets Component snapshot test 1`] = `
+<div
+  id="profile-section"
+>
+  <div>
+    <h2>
+      My Missions
+    </h2>
+    <ul
+      className="list"
+    >
+      You haven't joined any missions yet
+    </ul>
+  </div>
+</div>
+`;

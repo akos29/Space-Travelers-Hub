@@ -1,7 +1,11 @@
 import React from 'react';
+import JoinedMissions from './JoinedMissions';
 
-export default function MyProfile() {
-  return (
-    <div>MyProfile</div>
-  );
-}
+const MyProfile = () => (
+  <div id="profile-section">
+    <JoinedMissions />
+
+  </div>
+);
+
+export default MyProfile;
