@@ -4,7 +4,7 @@ import logger from 'redux-logger';
 import missions from './missions/missions';
 
 const rootReducer = combineReducers({
- missions
+  missions,
 });
 const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
