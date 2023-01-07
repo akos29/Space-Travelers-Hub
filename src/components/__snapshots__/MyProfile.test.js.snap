@@ -1,18 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Rockets Component snapshot test 1`] = `
-<div
-  id="profile-section"
->
-  <div>
-    <h2>
-      My Missions
-    </h2>
-    <ul
-      className="list"
+Array [
+  <h2>
+    MyProfile
+  </h2>,
+  <div
+    className="myProfile"
+  >
+    <div
+      className="myMissions"
     >
-      You haven't joined any missions yet
-    </ul>
-  </div>
-</div>
+      <h3>
+        My Missions
+      </h3>
+      <div>
+        <ul
+          className="list"
+        >
+          You haven't joined any missions yet
+        </ul>
+      </div>
+    </div>
+    <div
+      className="myRockets"
+    >
+      <h3>
+        My Rockets
+      </h3>
+      <ul>
+        You haven't booked any rocket yet
+      </ul>
+    </div>
+  </div>,
+]
 `;

@@ -1,4 +1,4 @@
-import Data from '../../apis/API-Data';
+import Data from '../../apis/spaceAPI';
 
 const LOAD_MISSIONS = 'spacehub/missions/LOAD_MISSIONS';
 const CHANGE_STATUS = 'spacehub/missions/CHANGE_STATUS';

@@ -2,12 +2,12 @@ import {
   render, screen, waitFor, fireEvent, act,
 } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import Missions from '../Mission';
+import Missions from './Mission';
 import MyProfile from '../MyProfile';
-import store from '../../redux/configureStore';
-import axios from '../../apis/Base-API';
+import Store from '../../redux/store';
+import axios from '../../apis/spaceAPI';
 
-jest.mock('../../apis/Base-API');
+jest.mock('../../apis/spaceAPI');
 
 describe('The Missions section tests', () => {
   beforeEach(async () => {
@@ -29,21 +29,21 @@ describe('The Missions section tests', () => {
   });
 
   afterEach(() => {
-    act(() => store.dispatch({
+    act(() => Store.dispatch({
       type: 'spacehub/missions/LOAD_MISSIONS',
       payload: [],
     }));
   });
 
   test('should render the missions page', async () => {
-    render(<Provider store={store}><Missions /></Provider>);
+    render(<Provider store={Store}><Missions /></Provider>);
     await waitFor(() => {
       expect(screen.getAllByText('Join Mission').length).toBeGreaterThan(1);
     });
   });
 
   test('Leave mission when the user clicks on "Leave Mission" button', async () => {
-    render(<Provider store={store}><Missions /></Provider>);
+    render(<Provider store={Store}><Missions /></Provider>);
     const joinButtons = await screen.findAllByText('Join Mission');
     fireEvent.click(joinButtons[0]);
 
@@ -55,7 +55,7 @@ describe('The Missions section tests', () => {
   });
 
   test('There are no joined missions at first in "My Profile"', async () => {
-    render(<Provider store={store}><MyProfile /></Provider>);
+    render(<Provider store={Store}><MyProfile /></Provider>);
     await waitFor(() => {
       expect(screen.queryByText('You haven\'t joined any missions yet')).not.toBeNull();
     });

@@ -8,16 +8,15 @@ import {
   Route,
 } from 'react-router-dom';
 import './index.css';
-import store from './redux/configureStore';
 import Root, { loader as rootLoader } from './routes/root';
 import ErrorPage from './error-page';
-import Rockets from './components/Rockets';
-import Mission from './components/Mission';
+import Rockets from './components/rockets/Rockets';
+import Mission from './components/mission/Mission';
 import MyProfile from './components/MyProfile';
-import Store, { store } from './redux/store';
+import Store from './redux/store';
 import { getRockets } from './redux/rockets/rocketSlice';
 
-store.dispatch(getRockets());
+Store.dispatch(getRockets());
 
 const router = createBrowserRouter(
   createRoutesFromElements(

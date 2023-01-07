@@ -1,8 +1,8 @@
-import './mission/missions.css';
+import './missions.css';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMissions, changeStatus } from '../redux/missions/missions';
-import Details from './mission/Details';
+import { getMissions, changeStatus } from '../../redux/missions/missionSlice';
+import Details from './Details';
 
 const Missions = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -10,13 +10,15 @@ const Missions = () => {
     name: '',
     description: '',
   });
-  const missions = useSelector((state) => state.missions);
+  const missions = useSelector((state) => state.missions.missions);
   const dispatch = useDispatch();
+  const missionStatus = useSelector((state) => state.missions.status);
 
   useEffect(() => {
-    dispatch(fetchMissions);
-    // eslint-disable-next-line
-  }, []);
+    if (missionStatus === 'idle') {
+      dispatch(getMissions());
+    }
+  }, [missionStatus, dispatch]);
 
   const toggleStatus = (id) => {
     dispatch(changeStatus(id));
@@ -41,7 +43,7 @@ const Missions = () => {
             <th> </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody key={Math.random()}>
           {missions.map((mission) => (
             <tr key={mission.mission_id}>
               <td className="mission-name">
@@ -83,6 +85,7 @@ const Missions = () => {
       </table>
       {openModal && (
         <Details
+          key={Math.random()}
           closeModal={setOpenModal}
           name={modalMission.name}
           description={modalMission.description}
