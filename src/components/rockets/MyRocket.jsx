@@ -1,3 +1,4 @@
+/*  eslint-disable */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { myReservations } from '../../redux/rockets/rocketSlice';
@@ -10,7 +11,6 @@ function MyRocket() {
   }, []);
 
   return (
-    
     <>
       {
         myRockReservation.length > 0 ? myRockReservation.map((roc) => (

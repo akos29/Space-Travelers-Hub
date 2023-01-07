@@ -1,32 +1,6 @@
-/* eslint-disable */
-import {
-  Outlet, NavLink, useLoaderData, redirect, useNavigation, useSubmit,
-} from 'react-router-dom';
-import { getContacts, createContact } from '../components/Contact';
-
-export async function action() {
-  const contact = await createContact();
-  return redirect(`/contacts/${contact.id}/edit`);
-}
-
-export async function loader({ request }) {
-  const url = new URL(request.url);
-  const q = url.searchParams.get('q');
-  const contacts = await getContacts(q);
-  return { contacts, q };
-}
+import { Outlet, NavLink } from 'react-router-dom';
 
 export default function Root() {
-  const { contacts, q } = useLoaderData();
-  const navigation = useNavigation();
-  const submit = useSubmit();
-
-  const searching = navigation.location && new URLSearchParams(navigation.location.search).has('q');
-
-  // useEffect(() => {
-  //   document.getElementById("q").value = q;
-  // }, [q]);
-
   return (
     <>
       <div id="sidebar">
@@ -59,7 +33,7 @@ export default function Root() {
 
               </NavLink>
             </li>
-            <li className='separator'></li>
+            <li className="separator" />
             <li>
               <NavLink
                 to="myprofile/"

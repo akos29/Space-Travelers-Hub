@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import spaceApi from '../../apis/spaceAPI';
 
@@ -19,12 +18,21 @@ const missionSlice = createSlice({
   reducers: {
     changeStatus: (state, action) => {
       const newState = state.missions.map((mission) => {
-        if (mission.mission_id !== action.payload) {
-          return mission;
-        }
-        return { ...mission, reserved: !mission.reserved };
+        if (mission.mission_id !== action.payload) { return mission; }
+        return { ...mission, reserved: true };
       });
       state.missions = newState;
+    },
+    cancelMission: (state, action) => {
+      const newState = state.missions.map((mission) => {
+        if (mission.mission_id !== action.payload) { return mission; }
+        return { ...mission, reserved: false };
+      });
+      state.missions = newState;
+    },
+    myMissions: (state) => {
+      const newState = state.missions.filter((mission) => mission.reserved);
+      state.joinedMissions = newState;
     },
   },
   extraReducers(builder) {
@@ -34,7 +42,7 @@ const missionSlice = createSlice({
       })
       .addCase(getMissions.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.missions = state.missions.concat(action.payload);
+        state.missions = [...action.payload];
       })
       .addCase(getMissions.rejected, (state, action) => {
         state.status = 'failed';
@@ -43,5 +51,5 @@ const missionSlice = createSlice({
   },
 });
 
-export const { changeStatus, cancelReserve, myReservations } = missionSlice.actions;
+export const { changeStatus, cancelMission, myMissions } = missionSlice.actions;
 export default missionSlice.reducer;
