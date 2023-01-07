@@ -1,22 +1,24 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { myMissions } from '../../redux/missions/missionSlice';
 
 const JoinedMissions = () => {
-  const joinedMissions = useSelector((state) => state.missions.missions
-    .filter((mission) => mission.reserved));
+  const dispatch = useDispatch();
+  const myMissionsJoined = useSelector((state) => state.missions.joinedMissions);
+  useEffect(() => {
+    dispatch(myMissions());
+  }, []);
 
   return (
-    <div>
-      <ul className="list">
-        {joinedMissions.length > 0
-          ? joinedMissions.map((mission) => (
-            <li className="list-item" key={mission.mission_id}>
-              {mission.mission_name}
-            </li>
-          ))
-          : "You haven't joined any missions yet"}
-      </ul>
-    </div>
+    <>
+      {myMissionsJoined.length > 0
+        ? myMissionsJoined.map((mission) => (
+          <li className="list-item" key={mission.mission_id}>
+            {mission.mission_name}
+          </li>
+        ))
+        : "You haven't joined any missions yet"}
+    </>
   );
 };
 

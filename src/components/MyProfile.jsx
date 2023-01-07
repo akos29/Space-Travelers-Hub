@@ -10,7 +10,9 @@ export default function MyProfile() {
       <div className={styles.myProfile}>
         <div className={styles.myMissions}>
           <h3>My Missions</h3>
+          <ul>
           <JoinedMissions />
+          </ul>
         </div>
         <div className={styles.myRockets}>
           <h3>My Rockets</h3>

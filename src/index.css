@@ -141,8 +141,6 @@ form[action$="destroy"] button {
   margin: 0;
   padding: 1rem 2rem;
   border-top: 1px solid #e3e3e3;
-
-  /* order: 1; */
   line-height: 1;
 }
 

@@ -62,8 +62,6 @@ tr:nth-child(even) {
 }
 
 @media screen and (max-width: 900px) {
-
-  /* stylelint-disable-next-line rule-empty-line-before */
   th,
   .mission-name {
     font-size: 13px;
@@ -85,6 +83,4 @@ tr:nth-child(even) {
   .join-mission {
     width: 100px;
   }
-
-  /* stylelint-disable-next-line no-missing-end-of-source-newline */
 }
