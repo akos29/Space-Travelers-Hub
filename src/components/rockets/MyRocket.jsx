@@ -1,7 +1,6 @@
-/* eslint-disable */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { myReservations } from '../redux/rockets/rocketSlice';
+import { myReservations } from '../../redux/rockets/rocketSlice';
 
 function MyRocket() {
   const dispatch = useDispatch();
@@ -11,15 +10,16 @@ function MyRocket() {
   }, []);
 
   return (
+    
     <>
       {
-        myRockReservation.map((roc) => (
+        myRockReservation.length > 0 ? myRockReservation.map((roc) => (
           <li key={roc.id}>
             {' '}
             {roc.rocket_name}
             {' '}
           </li>
-        ))
+        )) : "You haven't booked any rocket yet"
       }
     </>
   );
