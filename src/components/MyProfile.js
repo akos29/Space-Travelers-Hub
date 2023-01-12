@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import React from 'react';
 import JoinedMissions from './mission/JoinedMissions';
 import styles from './MyProfile.module.css';

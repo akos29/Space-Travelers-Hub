@@ -1,4 +1,3 @@
-/*  eslint-disable */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { myReservations } from '../../redux/rockets/rocketSlice';
