@@ -1,10 +1,11 @@
+/* eslint-disable no-nested-ternary */
 import { Outlet, NavLink } from 'react-router-dom';
 
 export default function Root() {
   return (
     <>
       <div id="sidebar">
-        <h1>Space Travelers' Hub</h1>
+        <h1>Space Travelers&apos; Hub</h1>
         <nav>
           <ul>
             <li>

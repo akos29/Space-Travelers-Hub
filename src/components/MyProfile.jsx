@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 import JoinedMissions from './mission/JoinedMissions';
 import styles from './MyProfile.module.css';
@@ -11,7 +12,7 @@ export default function MyProfile() {
         <div className={styles.myMissions}>
           <h3>My Missions</h3>
           <ul>
-          <JoinedMissions />
+            <JoinedMissions />
           </ul>
         </div>
         <div className={styles.myRockets}>
