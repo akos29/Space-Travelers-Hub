@@ -1,7 +1,6 @@
 {
   "name": "spacetravelershub",
   "version": "0.1.0",
-  "homepage": "https://{username}.github.io/{repo-name}",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
