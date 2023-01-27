@@ -126,6 +126,7 @@ form[action$="destroy"] button {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 #sidebar > * {
