@@ -97,7 +97,7 @@ After you're finished please remove all the comments and instructions!
 
 > Add a link to your deployed project.
 
-- [Coming Soon]()
+- [Live Demo](https://akos-spacehub.netlify.app/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
